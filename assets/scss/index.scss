@@ -1,36 +1,12 @@
 body {
-	&:before {
-		z-index: -2;
-		position: absolute;
-		content: "";
-		width: 100%;
-		height: 100%;
-		top: 0;
-		left: 0;
-		background-image: url("../../assets/images/bg.jpg");
-		background-size: cover;
-		background-repeat: no-repeat;
-		filter: brightness(70%);
-	}
-
-	&:after {
-		z-index: -1;
-		position: absolute;
-		content: "";
-		width: 100%;
-		height: 20vh;
-		bottom: 0;
-		left: 0;
-		background-color: rgba($color: #000000, $alpha: 0.5);
-		background-size: cover;
-		background-repeat: no-repeat;
-		filter: brightness(70%);
-	}
+	background-image: url("https://steamuserimages-a.akamaihd.net/ugc/27362480227072862/45DE1D2484549DFFD47165D8361E7AB9B49A3763/");
+	background-size: cover;
+	background-repeat: no-repeat;
 }
 
 .game {
 	#{&}-preview {
-		background-image: url("../../assets/images/mario-dance.gif");
+		background-image: url("../../assets/images/spyro-idle.gif");
 		background-size: contain;
 		background-repeat: no-repeat;
 		width: 100%;
