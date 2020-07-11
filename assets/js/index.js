@@ -1,16 +1,72 @@
-const viewports = ["game", "new", "profile"];
+const viewports = [
+	{
+		name: "game",
+		in: "animate__backInDown",
+		out: "animate__backOutUp"
+	},
+	{
+		name: "new",
+		in: "animate__fadeIn",
+		out: "animate__backOutUp"
+	},
+	{
+		name: "profile",
+		in: "animate__backInDown",
+		out: "animate__backOutUp"
+	},
+];
+for (let v of viewports) // hide all viewports by default
+	document.getElementById(v.name).classList.add("d-none");
+
 const characters = [];
 const audio_bgm = document.getElementById("bgm");
 
+// Character selected to play/edit profile
+let selectedCharacter = null;
+
 /**
- * Toggle a specific DOM viewport.
+ * Slider callback to change the selected char/preview color & slider formatting.
+ */
+const slider = new Slider('#form-color', {
+	formatter: (value) => {
+		if (selectedCharacter)
+			selectedCharacter.setColor(value);
+		return value.toString();
+	}
+});
+
+/**
+ * Toggle a specific DOM viewport and in/out animations.
  * @param {string} viewportName - The viewport name.
  */
 const toggleViewport = (viewportName) =>
 {
 	for (let v of viewports)
-		document.getElementById(v).style.display = "none";
-	document.getElementById(viewportName).style.display = "block";
+	{
+		const elem = document.getElementById(v.name);
+		if (v.name == viewportName)
+		{
+			elem.classList.remove("d-none");
+			elem.classList.remove(v.out);
+			elem.classList.add(v.in);
+			const showHandler = () => {
+				elem.removeEventListener("animationend", showHandler);
+				elem.classList.remove(v.in);
+				elem.classList.remove("d-none");
+			};
+			elem.addEventListener("animationend", showHandler);
+			continue;
+		} 
+
+		elem.classList.remove(v.in);
+		elem.classList.add(v.out);
+		const hideHandler = () => {
+			elem.removeEventListener("animationend", hideHandler);
+			elem.classList.remove(v.out);
+			elem.classList.add("d-none");
+		};
+		elem.addEventListener("animationend", hideHandler);
+	}
 }
 
 /**
@@ -72,21 +128,23 @@ const saveProfiles = () =>
  */
 const selectProfile = (e) =>
 {
-	console.log(e.target.parentNode);
 	const profileId = parseInt(e.target.parentNode.getAttribute("data-id"), 10);
-	const profile = characters[profileId];
+	selectedCharacter = characters[profileId];
 
 	// remove all profile click event
 	for (let i = 0; i < 3; i++)
 		document.querySelector(`#profile-${i}`).removeEventListener("click", selectProfile);
 
-	if (profile.isNew)
-		toggleViewport("new");
+	if (selectedCharacter.isNew)
+		newProfile();
 	else
-	{
-		toggleViewport("game");
 		gameLoop();
-	}
+}
+
+const newProfile = () =>
+{
+	toggleViewport("new");
+	document.getElementById("new-create").addEventListener("click", gameLoop);
 }
 
 /**
@@ -94,8 +152,11 @@ const selectProfile = (e) =>
  */
 const gameLoop = () =>
 {
+	toggleViewport("game");
+	document.getElementById("new-create").removeEventListener("click", gameLoop);
 	console.log("started game");
 }
 
 loadProfiles();
 toggleViewport("profile");
+// toggleViewport("new");

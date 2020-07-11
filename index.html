@@ -6,21 +6,22 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="Description" content="Enter your description here"/>
 	<title>Spyro Tamagotchi</title>
-	<!-- Boostrap & FontAwesome & Animate -->
+	<!-- Boostrap & FontAwesome & Animate & Slider -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/css/bootstrap-slider.min.css" integrity="sha512-3q8fi8M0VS+X/3n64Ndpp6Bit7oXSiyCnzmlx6IDBLGlY5euFySyJ46RUlqIVs0DPCGOypqP8IRk/EyPvU28mQ==" crossorigin="anonymous" />
 	<!-- CSS -->
 	<link rel="stylesheet" href="dist/css/index.css">
 </head>
 <body>
 	<!-- Profile -->
-	<article id="profile" class="profile container vh-100">
+	<article id="profile" class="profile animate__animated container-fluid vh-100">
 		<!-- Profile Saves -->
-		<section class="profile-paper animate__animated animate__backInDown mx-auto w-50 h-100 d-flex flex-column align-items-center">
+		<section class="profile-paper mx-auto w-50 h-100 d-flex flex-column align-items-center">
 			<h2 class="text-center">Profile</h2>
 			<div data-id="0" id="profile-0" class="profile-save d-flex justify-content-between">
-				<img id="preview" class="img-fluid" width="150" src="assets/images/spyro-idle.gif" alt="Spyro Profile">
+				<img id="char-preview" class="img-fluid" width="150" src="assets/images/spyro-idle.gif" alt="Spyro Profile">
 				<div data-id="0" class="w-100">
 					<h5 id="name">Name</h5>
 					<ul data-id="0" class="bars list-unstyled d-flex flex-column justify-content-center">
@@ -31,7 +32,7 @@
 				</div>
 			</div>
 			<div data-id="1" id="profile-1" class="profile-save d-flex justify-content-between">
-				<img id="preview" class="img-fluid" width="150" src="assets/images/spyro-idle.gif" alt="Spyro Profile">
+				<img id="char-preview" class="img-fluid" width="150" src="assets/images/spyro-idle.gif" alt="Spyro Profile">
 				<div data-id="1" class="w-100">
 					<h5 id="name">Name</h5>
 					<ul data-id="1" class="bars list-unstyled d-flex flex-column justify-content-center">
@@ -42,7 +43,7 @@
 				</div>
 			</div>
 			<div data-id="2" id="profile-2" class="profile-save d-flex justify-content-between">
-				<img id="preview" class="img-fluid" width="150" src="assets/images/spyro-idle.gif" alt="Spyro Profile">
+				<img id="char-preview" class="img-fluid" width="150" src="assets/images/spyro-idle.gif" alt="Spyro Profile">
 				<div data-id="2" class="w-100">
 					<h5 id="name">Name</h5>
 					<ul data-id="2" class="bars list-unstyled d-flex flex-column justify-content-center">
@@ -55,47 +56,59 @@
 		</section>
 	</article>
 
-	<article id="new" class="new container vh-100">
-		<main class="row h-100 justify-content-center align-items-center">
-			<!-- New Game -->
+	<!-- New Game -->
+	<article id="new" class="new container-fluid vh-100 animate__animated">
+		<main class="row h-100">
+			<!-- Customize -->
 			<section class="new-paper animate__animated animate__backInRight h-100 order-md-1 col-md-6 col-sm-12 d-flex flex-column align-items-center">
 				<h2 class="text-center">New Game</h2>
-				<div>
-
+				<div class="my-2">
+					<label for="form-name">Character Name</label>
+    				<input type="text" class="form-control" id="form-name" placeholder="Spyro">
+				</div>
+				<div class="my-2">
+					<label for="form-color" class="mr-3">Color</label>
+					<input id="form-color" data-slider-id='form-color-slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="1" data-slider-value="0"/>
+				</div>
+				<div class="mt-5 pt-5">
+					<button id="new-create" type="button" class="btn btn-lg btn-warning">Create !</button>
 				</div>
 			</section>
 			<!-- Profile Preview -->
-			<section class="profile-preview animate__animated animate__bounceInLeft h-100 col-md-6 col-sm-12 d-flex flex-column align-items-center justify-content-center">
+			<section id="char-preview" class="new-preview animate__animated animate__backInLeft h-100 col-md-6 col-sm-12 d-flex flex-column align-items-center justify-content-center">
 			</section>
 		</main>
 	</article>
 
 	<!-- Game -->
-	<article id="game" class="game container my-5 row">
-		<!-- Preview -->
-		<main class="col-md-8 col-sm-12">
-			<div class="game-preview"></div>
-		</main>
-		<!-- Gameplay -->
-		<aside class="col-md-4 col-sm-12">
-			<!-- Bars -->		
-			<section>
-				<ul class="list-unstyled">
-					<li>bar1</li>
-					<li>bar2</li>
-					<li>bar3</li>
-				</ul>
+	<article id="game" class="game container-fluid vh-100 animate__animated">
+		<main class="row h-100 justify-content-center align-items-center">
+			<!-- Preview -->
+			<section class="col-md-6 col-sm-12">
+				<div id="char-preview" class="game-preview"></div>
 			</section>
-		</aside>
+			<!-- Gameplay -->
+			<aside class="col-md-6 col-sm-12 align-self-start">
+				<!-- Bars -->
+				<section>
+					<ul class="bars list-unstyled d-flex flex-column justify-content-center">
+						<li class="bar-sleep"></li>
+						<li class="bar-playing"></li>
+						<li class="bar-hunting"></li>
+					</ul>
+				</section>
+			</aside>
+		</main>
 	</article>
 
 	<!-- Audio -->
 	<audio id="bgm" src="assets/audio/spyro_bgm.mp3"></audio>
 </body>
-<!-- Boostrap & JQuery & Popper -->
+<!-- Boostrap & Slider & JQuery & Popper -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/bootstrap-slider.min.js" integrity="sha512-f0VlzJbcEB6KiW8ZVtL+5HWPDyW1+nJEjguZ5IVnSQkvZbwBt2RfCBY0CBO1PsMAqxxrG4Di6TfsCPP3ZRwKpA==" crossorigin="anonymous"></script>
 <!-- JS -->
 <script src="assets/js/character.js"></script>
 <script src="assets/js/index.js"></script>
