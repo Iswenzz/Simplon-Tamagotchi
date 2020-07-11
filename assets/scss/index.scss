@@ -1,7 +1,32 @@
-body {
-	background-image: url("https://steamuserimages-a.akamaihd.net/ugc/27362480227072862/45DE1D2484549DFFD47165D8361E7AB9B49A3763/");
+// fonts
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Marck+Script&display=swap');
+
+// responsive queries
+$queries: (
+	desktop: 'min-width: 1224px',
+	tablet_mobile: 'max-device-width: 1224px',
+	portrait: 'orientation: portrait',
+	retina: 'min-resolution: 2dppx',
+	big: 'min-device-width: 1824px'
+);
+
+@mixin media($keys...) {
+    @each $key in $keys {
+		@media (map-get($queries, $key)) {
+			@content;
+		}
+	}
+}
+
+html, body {
+	background-image: url("../../assets/images/bg.jpg");
 	background-size: cover;
-	background-repeat: no-repeat;
+	overflow-x: hidden;
+}
+
+h1, h2, h3 {
+	font-family: 'Courgette', cursive;
+	color: white;
 }
 
 .game {
@@ -12,5 +37,97 @@ body {
 		width: 100%;
 		height: 30em;
 		max-height: 30em;
+	}
+}
+
+.profile {
+	#{&}-paper {
+		background-image: url("../../assets/images/paper.png");
+		background-size: contain;
+		background-repeat: no-repeat;
+
+		h2 {
+			font-size: 3em;
+			margin-top: 1.5em;
+			user-select: none;
+		}
+	}
+
+	#{&}-preview {
+		background-image: url("../../assets/images/spyro-idle.gif");
+		background-size: contain;
+		background-repeat: no-repeat;
+		filter: brightness(0%);
+	}
+
+	#{&}-save {
+		width: 80%;
+		border: dotted 3px brown;
+		text-align: center;
+		transform: scale(0.8);
+
+		&:hover {
+			z-index: 10;
+			cursor: pointer;
+			background-color: peru;
+			filter: sepia(30%);
+		}
+
+		@include media(tablet_mobile) {
+			transform: scale(0.4);
+		}
+	}
+}
+
+.new {
+	#{&}-paper {
+		background-image: url("../../assets/images/paper.png");
+		background-size: contain;
+		background-repeat: no-repeat;
+
+		h2 {
+			font-size: 3em;
+			margin-top: 1.5em;
+			user-select: none;
+		}
+	}
+
+	#{&}-preview {
+		background-image: url("../../assets/images/spyro-idle.gif");
+		background-size: contain;
+		background-repeat: no-repeat;
+		filter: brightness(0%);
+	}
+}
+
+@mixin bar($color, $icon, $family) {
+	width: 100%;
+	margin: 0.15em 0;
+	background-color: $color;
+	border-radius: 1em;
+
+	&:before {
+		content: $icon;
+		font-family: $family;
+		font-weight: 700;
+		color: darken($color, 50%);
+		margin-left: 1em;
+		float: left;
+	}
+}
+
+.bars {
+	width: 100%;
+
+	.bar-sleep {
+		@include bar(lightblue, "\f236", "Font Awesome 5 Free");
+	}
+	
+	.bar-playing {
+		@include bar(lightgreen, "\f118", "Font Awesome 5 Free");
+	}
+	
+	.bar-hunting {
+		@include bar(salmon, "\f3ad", "Font Awesome 5 Brands");
 	}
 }
