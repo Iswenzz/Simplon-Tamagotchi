@@ -52,11 +52,16 @@ h1, h2, h3, button {
 		background-size: contain;
 		background-repeat: no-repeat;
 		background-position: 50% 0;
+		width: 50%;
 
 		h2 {
 			font-size: 3em;
 			margin-top: 1.5em;
 			user-select: none;
+		}
+
+		@include media(tablet_mobile, portrait) {
+			width: 100%;
 		}
 	}
 
@@ -81,8 +86,10 @@ h1, h2, h3, button {
 			filter: sepia(30%);
 		}
 
-		@include media(tablet_mobile) {
-			transform: scale(0.4);
+		@include media(tablet_mobile, portrait) {
+			ul {
+				flex-direction: row !important;
+			}
 		}
 	}
 }
