@@ -1,23 +1,3 @@
-const viewports = [
-	{
-		name: "game",
-		in: "animate__backInDown",
-		out: "animate__backOutUp"
-	},
-	{
-		name: "new",
-		in: "animate__fadeIn",
-		out: "animate__backOutUp"
-	},
-	{
-		name: "profile",
-		in: "animate__backInDown",
-		out: "animate__backOutUp"
-	}
-];
-for (let v of viewports) // hide all viewports by default
-	document.getElementById(v.name).classList.add("d-none");
-
 let mainLoop = null;
 const characters = [];
 const audio_bgm = document.getElementById("bgm");
@@ -35,40 +15,6 @@ const slider = new Slider('#form-color', {
 		return value.toString();
 	}
 });
-
-/**
- * Toggle a specific DOM viewport and in/out animations.
- * @param {string} viewportName - The viewport name.
- */
-const toggleViewport = (viewportName) =>
-{
-	for (let v of viewports)
-	{
-		const elem = document.getElementById(v.name);
-		if (v.name == viewportName)
-		{
-			elem.classList.remove("d-none");
-			elem.classList.remove(v.out);
-			elem.classList.add(v.in);
-			const showHandler = () => {
-				elem.removeEventListener("animationend", showHandler);
-				elem.classList.remove(v.in);
-				elem.classList.remove("d-none");
-			};
-			elem.addEventListener("animationend", showHandler);
-			continue;
-		} 
-
-		elem.classList.remove(v.in);
-		elem.classList.add(v.out);
-		const hideHandler = () => {
-			elem.removeEventListener("animationend", hideHandler);
-			elem.classList.remove(v.out);
-			elem.classList.add("d-none");
-		};
-		elem.addEventListener("animationend", hideHandler);
-	}
-}
 
 /**
  * Load profiles from localstorage.
