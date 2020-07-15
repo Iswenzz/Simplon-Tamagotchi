@@ -1,20 +1,7 @@
 let mainLoop = null;
+let selectedCharacter = null; // Character selected to play/edit profile
 const characters = [];
 const audio_bgm = document.getElementById("bgm");
-
-// Character selected to play/edit profile
-let selectedCharacter = null;
-
-/**
- * Slider callback to change the selected char/preview color & slider formatting.
- */
-const slider = new Slider('#form-color', {
-	formatter: (value) => {
-		if (selectedCharacter)
-			selectedCharacter.setColor(value);
-		return value.toString();
-	}
-});
 
 /**
  * Load profiles from localstorage.
@@ -124,6 +111,17 @@ const gameOver = () =>
 {
 	clearInterval(mainLoop);
 }
+
+/**
+ * Slider callback to change the selected char/preview color & slider formatting.
+ */
+const slider = new Slider('#form-color', {
+	formatter: (value) => {
+		if (selectedCharacter)
+			selectedCharacter.setColor(value);
+		return value.toString();
+	}
+});
 
 loadProfiles();
 toggleViewport("profile");
