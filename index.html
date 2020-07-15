@@ -75,7 +75,7 @@
 				</div>
 			</section>
 			<!-- Profile Preview -->
-			<section id="char-preview" class="new-preview animate__animated animate__backInLeft h-100 col-md-6 col-sm-12 d-flex flex-column align-items-center justify-content-center">
+			<section data-target="preview" id="char-preview" class="new-preview animate__animated animate__backInLeft h-100 col-md-6 col-sm-12 d-flex flex-column align-items-center justify-content-center">
 			</section>
 		</main>
 	</article>
@@ -85,16 +85,16 @@
 		<main class="row h-100 justify-content-center align-items-center">
 			<!-- Preview -->
 			<section class="col-md-6 col-sm-12">
-				<div id="char-preview" class="game-preview"></div>
+				<div data-target="game" id="char-preview" class="game-preview"></div>
 			</section>
 			<!-- Gameplay -->
 			<aside class="col-md-6 col-sm-12 align-self-start">
 				<!-- Bars -->
 				<section>
 					<ul class="bars list-unstyled d-flex flex-column justify-content-center">
-						<li class="bar-sleep"></li>
-						<li class="bar-playing"></li>
-						<li class="bar-hunting"></li>
+						<li data-target="game" class="bar-sleep"></li>
+						<li data-target="game" class="bar-playing"></li>
+						<li data-target="game" class="bar-hunting"></li>
 					</ul>
 				</section>
 			</aside>

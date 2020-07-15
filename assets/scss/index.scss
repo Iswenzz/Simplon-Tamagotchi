@@ -70,14 +70,6 @@ h1, h2, h3, button {
 		}
 	}
 
-	#{&}-preview {
-		background-image: url("../../assets/images/spyro-idle.gif");
-		background-size: contain;
-		background-repeat: no-repeat;
-		background-position: 50% 0;
-		filter: brightness(0%);
-	}
-
 	#{&}-save {
 		width: 80%;
 		border: dotted 3px brown;

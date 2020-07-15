@@ -1,5 +1,7 @@
 class Character
 {
+	frameCount = 0;
+
 	constructor(id, name, color, sleep, playing, hunting, isNew)
 	{
 		this.id = id;
@@ -7,45 +9,53 @@ class Character
 		this.sleep = sleep ?? 100;
 		this.playing = playing ?? 100;
 		this.hunting = hunting ?? 100;
-		this.isNew = isNew ?? true;
-		this.setColor(color ?? 0);
-		this.updateVisuals();
+		this.color = color ?? 0;
+		this.isNew = isNew ?? true;	
 	}
 
-	updateVisuals()
+	initialize()
 	{
-		
+		this.setColor(this.color);
+		this.setSleep(this.sleep);
+		this.setPlaying(this.playing);
+		this.setHunting(this.hunting);
 	}
 
 	setColor(color)
 	{
 		this.color = color;
-		for (let p of document.querySelectorAll("#char-preview"))
-			p.setAttribute("style", `filter: hue-rotate(${color}deg)`);
+		
+		document.querySelector("#char-preview[data-target*='game']")
+			.setAttribute("style", `filter: hue-rotate(${color}deg)`);
+		document.querySelector("#char-preview[data-target*='preview']")
+			.setAttribute("style", `filter: hue-rotate(${color}deg)`);
 	}
 
 	setSleep(val)
 	{
 		if (val < 0) val = 0;
 		this.sleep = val;
-		for (let p of document.querySelectorAll(".bar-sleep"))
-			p.setAttribute("style", `width: ${val}%`);
-	}
 
-	setHunting(val)
-	{
-		if (val < 0) val = 0;
-		this.hunting = val;
-		for (let p of document.querySelectorAll(".bar-hunting"))
-			p.setAttribute("style", `width: ${val}%`);
+		document.querySelector(".bar-sleep[data-target*='game']")
+			.setAttribute("style", `width: ${val}%`);
 	}
 
 	setPlaying(val)
 	{
 		if (val < 0) val = 0;
 		this.playing = val;
-		for (let p of document.querySelectorAll(".bar-playing"))
-			p.setAttribute("style", `width: ${val}%`);
+		
+		document.querySelector(".bar-playing[data-target*='game']")
+			.setAttribute("style", `width: ${val}%`);
+	}
+
+	setHunting(val)
+	{
+		if (val < 0) val = 0;
+		this.hunting = val;
+		
+		document.querySelector(".bar-hunting[data-target*='game']")
+			.setAttribute("style", `width: ${val}%`);
 	}
 
 	frame()
@@ -57,14 +67,17 @@ class Character
 				this.setSleep(this.sleep - rnd);
 				break;
 			case 1: 
-				this.setHunting(this.hunting - rnd);
-				break;
-			case 2: 
 				this.setPlaying(this.playing - rnd);
 				break;
+			case 2: 
+				this.setHunting(this.hunting - rnd);
+				break;
 		}
-		saveProfiles();
+
+		if (this.frameCount % 4)
+			saveProfiles();
 		if (this.sleep <= 0 && this.playing <= 0 && this.hunting <= 0)
 			gameOver();
+		this.frameCount++;
 	}
 }

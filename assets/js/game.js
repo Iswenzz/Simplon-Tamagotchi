@@ -81,17 +81,20 @@ const loadProfiles = () =>
 	{
 		for (let p of profiles)
 		{
-			const char = new Character(p.id, p.name, p.color, p.sleep, p.playing, p.hunting, p.isNew);
-			characters.push(char);
+			characters.push(new Character(p.id, p.name, p.color, p.sleep, p.playing, p.hunting, p.isNew));
 
 			// profile click event
-			document.querySelector(`#profile-${char.id}`).addEventListener("click", selectProfile);
+			document.querySelector(`#profile-${p.id}`).addEventListener("click", selectProfile);
 
 			// fill DOM elements
-			const color = document.querySelector(`#profile-${char.id} img`);
+			const color = document.querySelector(`#profile-${p.id} img`);
 			color.setAttribute("style", `filter: hue-rotate(${p.color}deg)`);
-			const name = document.querySelector(`#profile-${char.id} h5`);
+			const name = document.querySelector(`#profile-${p.id} h5`);
 			name.innerText = p.name;
+			const profile = document.querySelector(`#profile-${p.id} ul`);
+			profile.children[0].style.width = `${p.sleep}%`;
+			profile.children[1].style.width = `${p.playing}%`;
+			profile.children[2].style.width = `${p.hunting}%`;
 		}
 	}
 	else // Reset localstorage
@@ -137,7 +140,10 @@ const selectProfile = (e) =>
 		document.querySelector(`#profile-${i}`).removeEventListener("click", selectProfile);
 
 	if (selectedCharacter.isNew)
+	{
+		selectedCharacter.isNew = false;
 		newProfile();
+	}
 	else
 		gameLoop();
 }
@@ -149,6 +155,8 @@ const newProfile = () =>
 {
 	toggleViewport("new");
 	document.getElementById("new-create").addEventListener("click", gameLoop);
+	document.getElementById("form-name").addEventListener("change", 
+		(e) => selectedCharacter.name = e.target.value);
 }
 
 /**
@@ -158,6 +166,7 @@ const gameLoop = () =>
 {
 	toggleViewport("game");
 	document.getElementById("new-create").removeEventListener("click", gameLoop);
+	selectedCharacter.initialize();
 
 	mainLoop = setInterval(() => selectedCharacter.frame(), 1000);
 }
