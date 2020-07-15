@@ -13,11 +13,12 @@ const viewports = [
 		name: "profile",
 		in: "animate__backInDown",
 		out: "animate__backOutUp"
-	},
+	}
 ];
 for (let v of viewports) // hide all viewports by default
 	document.getElementById(v.name).classList.add("d-none");
 
+let mainLoop = null;
 const characters = [];
 const audio_bgm = document.getElementById("bgm");
 
@@ -141,6 +142,9 @@ const selectProfile = (e) =>
 		gameLoop();
 }
 
+/**
+ * Create a new profile.
+ */
 const newProfile = () =>
 {
 	toggleViewport("new");
@@ -154,9 +158,17 @@ const gameLoop = () =>
 {
 	toggleViewport("game");
 	document.getElementById("new-create").removeEventListener("click", gameLoop);
-	console.log("started game");
+
+	mainLoop = setInterval(() => selectedCharacter.frame(), 1000);
+}
+
+/**
+ * Callback when the game is over.
+ */
+const gameOver = () =>
+{
+	clearInterval(mainLoop);
 }
 
 loadProfiles();
 toggleViewport("profile");
-// toggleViewport("new");

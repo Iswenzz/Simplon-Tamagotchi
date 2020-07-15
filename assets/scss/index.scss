@@ -22,6 +22,11 @@ html, body {
 	background-image: url("../../assets/images/bg.jpg");
 	background-size: cover;
 	overflow-x: hidden;
+
+	@include media(tablet_mobile, portrait) {
+		background-image: none;
+		background-color: greenyellow;
+	}
 }
 
 h1, h2, h3, button {
@@ -49,7 +54,7 @@ h1, h2, h3, button {
 .profile {
 	#{&}-paper {
 		background-image: url("../../assets/images/paper.png");
-		background-size: contain;
+		background-size: cover;
 		background-repeat: no-repeat;
 		background-position: 50% 0;
 		width: 50%;
@@ -97,7 +102,7 @@ h1, h2, h3, button {
 .new {
 	#{&}-paper {
 		background-image: url("../../assets/images/paper.png");
-		background-size: contain;
+		background-size: cover;
 		background-repeat: no-repeat;
 		background-position: 50% 0;
 
@@ -121,6 +126,7 @@ h1, h2, h3, button {
 	margin: 0.15em 0;
 	background-color: $color;
 	border-radius: 1em;
+	transition: width .5s linear;
 
 	&:before {
 		content: $icon;
