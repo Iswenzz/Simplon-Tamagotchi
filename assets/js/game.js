@@ -1,6 +1,6 @@
 let mainLoop = null;
 let selectedCharacter = null; // Character selected to play/edit profile
-const characters = [];
+let characters = [];
 const audio_bgm = document.getElementById("bgm");
 
 /**
@@ -10,14 +10,13 @@ const loadProfiles = () =>
 {
 	// load profiles from local storage & fill DOM elements
 	let profiles = JSON.parse(localStorage.getItem("profiles"));
+	characters = [];
+
 	if (profiles)
 	{
 		for (let p of profiles)
 		{
 			characters.push(new Character(p.id, p.name, p.color, p.sleep, p.playing, p.hunting, p.isNew));
-
-			// profile click event
-			document.querySelector(`#profile-${p.id}`).addEventListener("click", selectProfile);
 
 			// fill DOM elements
 			const color = document.querySelector(`#profile-${p.id} img`);
@@ -35,6 +34,7 @@ const loadProfiles = () =>
 		for (let i = 0; i < 3; i++)
 			characters.push(new Character(i));
 		saveProfiles();
+		loadProfiles();
 	}
 }
 
@@ -110,6 +110,27 @@ const gameLoop = () =>
 const gameOver = () =>
 {
 	clearInterval(mainLoop);
+	toggleViewport("gameover");
+}
+
+/**
+ * Initialize profile events.
+ */
+const initProfiles = () =>
+{
+	for (let p of characters)
+	{
+		// profile click event
+		document.querySelector(`#profile-${p.id}`).addEventListener("click", selectProfile);
+		// profile delete event
+		document.querySelector(`#profile-${p.id} i[data-action*="delete"]`)
+			.addEventListener("click", (e) => {
+			e.stopPropagation();
+			characters[p.id] = new Character(p.id);
+			saveProfiles();
+			loadProfiles();
+		});
+	}
 }
 
 /**
@@ -124,4 +145,5 @@ const slider = new Slider('#form-color', {
 });
 
 loadProfiles();
+initProfiles();
 toggleViewport("profile");

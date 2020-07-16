@@ -69,6 +69,13 @@ h1, h2, h3, button {
 	}
 }
 
+.gameover {
+	#{&}-paper {
+		@include paper;
+		width: 70%;
+	}
+}
+
 .profile {
 	#{&}-paper {
 		@include paper;

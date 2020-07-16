@@ -59,6 +59,7 @@ const viewports = [
 	new Viewport("game", "animate__backInDown", "animate__backOutUp"),
 	new Viewport("new", "animate__fadeIn", "animate__backOutUp"),
 	new Viewport("profile", "animate__backInDown", "animate__backOutUp"),
+	new Viewport("gameover", "animate__backInDown", "animate__backOutUp")
 ];
 
 /**
