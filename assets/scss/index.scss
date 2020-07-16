@@ -55,7 +55,7 @@ h1, h2, h3, button {
 	}
 }
 
-.game, .new, .profile {
+.game, .new, .profile, .gameover {
 	position: absolute;
 	top: 0;
 }
@@ -86,6 +86,7 @@ h1, h2, h3, button {
 	}
 
 	#{&}-save {
+		min-height: 10em;
 		width: 80%;
 		border: dotted 3px brown;
 		text-align: center;
@@ -99,6 +100,8 @@ h1, h2, h3, button {
 		}
 
 		@include media(tablet_mobile, portrait) {
+			min-height: 8em;
+
 			ul {
 				flex-direction: row !important;
 			}
@@ -122,14 +125,22 @@ h1, h2, h3, button {
 	background-color: $color;
 	border-radius: 1em;
 	transition: width .5s linear;
+	color: darken($color, 50%);
 
 	&:before {
 		content: $icon;
+		position: relative;
+		top: 0;
+		left: -1.5em;
 		font-family: $family;
 		font-weight: 700;
-		color: darken($color, 50%);
-		margin-left: 1em;
+		color: darken($color, 30%);
 		float: left;
+
+		@include media(tablet_mobile, portrait) {
+			left: 1em;
+			color: darken($color, 50%);
+		}
 	}
 }
 

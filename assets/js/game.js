@@ -27,6 +27,15 @@ const loadProfiles = () =>
 			profile.children[0].style.width = `${p.sleep}%`;
 			profile.children[1].style.width = `${p.playing}%`;
 			profile.children[2].style.width = `${p.hunting}%`;
+
+			if (p.isNew)
+			{
+				color.classList.add("d-none");
+				profile.children[0].classList.add("d-none");
+				profile.children[1].classList.add("d-none");
+				profile.children[2].classList.add("d-none");
+				name.innerText = "New Profile";
+			}
 		}
 	}
 	else // Reset localstorage
@@ -67,6 +76,8 @@ const selectProfile = (e) =>
 {
 	const profileId = parseInt(e.target.parentNode.getAttribute("data-id"), 10);
 	selectedCharacter = characters[profileId];
+	if (!selectedCharacter)
+		return;
 
 	// remove all profile click event
 	for (let i = 0; i < 3; i++)
@@ -100,6 +111,7 @@ const gameLoop = () =>
 	toggleViewport("game");
 	document.getElementById("new-create").removeEventListener("click", gameLoop);
 	selectedCharacter.initialize();
+	audio_bgm.play();
 
 	mainLoop = setInterval(() => selectedCharacter.frame(), 1000);
 }
