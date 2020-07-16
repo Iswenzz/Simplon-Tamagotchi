@@ -60,8 +60,9 @@ class Character
 		if (val < 0) val = 0;
 		this.sleep = val;
 
-		document.querySelector(".bar-sleep[data-target*='game']")
-			.setAttribute("style", `width: ${val}%`);
+		let elem = document.querySelector(".bar-sleep[data-target*='game']");
+		elem.setAttribute("style", `width: ${val}%`);
+		elem.innerHTML = `${val}%`;
 	}
 
 	/**
@@ -73,8 +74,9 @@ class Character
 		if (val < 0) val = 0;
 		this.playing = val;
 		
-		document.querySelector(".bar-playing[data-target*='game']")
-			.setAttribute("style", `width: ${val}%`);
+		let elem = document.querySelector(".bar-playing[data-target*='game']");
+		elem.setAttribute("style", `width: ${val}%`);
+		elem.innerHTML = `${val}%`;
 	}
 
 	/**
@@ -86,8 +88,24 @@ class Character
 		if (val < 0) val = 0;
 		this.hunting = val;
 		
-		document.querySelector(".bar-hunting[data-target*='game']")
-			.setAttribute("style", `width: ${val}%`);
+		let elem = document.querySelector(".bar-hunting[data-target*='game']");
+		elem.setAttribute("style", `width: ${val}%`);
+		elem.innerHTML = `${val}%`;
+	}
+
+	sleep()
+	{
+		
+	}
+
+	play()
+	{
+
+	}
+
+	hunt()
+	{
+		
 	}
 
 	/**

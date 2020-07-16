@@ -25,10 +25,13 @@ const loadProfiles = () =>
 			name.innerText = p.name;
 			const profile = document.querySelector(`#profile-${p.id} ul`);
 			profile.children[0].style.width = `${p.sleep}%`;
+			profile.children[0].innerText = `${p.sleep}%`;
 			profile.children[1].style.width = `${p.playing}%`;
+			profile.children[1].innerText = `${p.playing}%`;
 			profile.children[2].style.width = `${p.hunting}%`;
+			profile.children[2].innerText = `${p.hunting}%`;
 
-			if (p.isNew)
+			if (p.isNew) // empty new profile element
 			{
 				color.classList.add("d-none");
 				profile.children[0].classList.add("d-none");
@@ -111,7 +114,7 @@ const gameLoop = () =>
 	toggleViewport("game");
 	document.getElementById("new-create").removeEventListener("click", gameLoop);
 	selectedCharacter.initialize();
-	audio_bgm.play();
+	// audio_bgm.play();
 
 	mainLoop = setInterval(() => selectedCharacter.frame(), 1000);
 }

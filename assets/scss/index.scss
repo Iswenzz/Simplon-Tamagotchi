@@ -67,6 +67,14 @@ h1, h2, h3, button {
 		height: 30em;
 		max-height: 30em;
 	}
+
+	#{&}-bars {
+		ul li {
+			white-space: nowrap;
+			word-wrap: none;
+			text-align: center;
+		}
+	}
 }
 
 .gameover {
@@ -92,6 +100,12 @@ h1, h2, h3, button {
 		text-align: center;
 		transform: scale(0.8);
 
+		ul li {
+			white-space: nowrap;
+			word-wrap: none;
+			text-align: center;
+		}
+
 		&:hover {
 			z-index: 10;
 			cursor: pointer;
@@ -99,12 +113,15 @@ h1, h2, h3, button {
 			filter: sepia(30%);
 		}
 
+		i {
+			transition: 0.2s;
+			&:hover {
+				color: red;
+			}
+		}
+
 		@include media(tablet_mobile, portrait) {
 			min-height: 8em;
-
-			ul {
-				flex-direction: row !important;
-			}
 		}
 	}
 }
