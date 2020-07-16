@@ -75,6 +75,30 @@ h1, h2, h3, button {
 			text-align: center;
 		}
 	}
+
+	#{&}-buttons {
+		button {
+			width: 4em;
+			height: 4em;
+			background-color: whitesmoke;
+			
+			&:active, &:hover, &:focus, &:visited {
+				box-shadow: none !important;
+			}
+		}
+
+		#btn-sleep {
+			background: url("");
+		}
+
+		#btn-hunting {
+			background: url("");
+		}
+
+		#btn-playing {
+			background: url("");
+		}
+	}
 }
 
 .gameover {

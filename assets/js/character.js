@@ -116,21 +116,14 @@ class Character
 		const rnd = Math.floor(Math.random() * 6) + 1;
 		switch (Math.floor(Math.random() * 3))
 		{
-			case 0: 
-				this.setSleep(this.sleep - rnd);
-				break;
-			case 1: 
-				this.setPlaying(this.playing - rnd);
-				break;
-			case 2: 
-				this.setHunting(this.hunting - rnd);
-				break;
+			case 0: 	this.setSleep(this.sleep - rnd); 		break;
+			case 1: 	this.setPlaying(this.playing - rnd); 	break;
+			case 2: 	this.setHunting(this.hunting - rnd);	break;
 		}
-
-		if (this.frameCount % 4)
-			saveProfiles();
 		if (this.sleep <= 0 && this.playing <= 0 && this.hunting <= 0)
 			gameOver();
+
+		saveProfiles();
 		this.frameCount++;
 	}
 }
