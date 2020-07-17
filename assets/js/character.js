@@ -116,7 +116,7 @@ class Character
 	set hunting(val)
 	{
 		if (val < 0) val = 0;
-		this._hunting = val;
+		this._huntingVal = val;
 		
 		let elem = document.querySelector(".bar-hunting[data-target*='game']");
 		elem.setAttribute("style", `width: ${val}%`);
@@ -139,7 +139,7 @@ class Character
 		if (!this.previewElem.src.includes("assets/images/spyro-sleep.gif"))
 			this.previewElem.src = "assets/images/spyro-sleep.gif";
 
-		let val = this.sleep + 5;
+		let val = this.sleep + 10;
 		if (val >= 100) val = 100;
 		this.sleep = val;
 	}
@@ -152,7 +152,7 @@ class Character
 		if (!this.previewElem.src.includes("assets/images/spyro-play.gif"))
 			this.previewElem.src = "assets/images/spyro-play.gif";
 
-		let val = this.playing + 5;
+		let val = this.playing + 10;
 		if (val >= 100) val = 100;
 		this.playing = val;
 	}
@@ -165,7 +165,7 @@ class Character
 		if (!this.previewElem.src.includes("assets/images/spyro-hunt.gif"))
 			this.previewElem.src = "assets/images/spyro-hunt.gif";
 
-		let val = this.hunting + 5;
+		let val = this.hunting + 10;
 		if (val >= 100) val = 100;
 		this.hunting = val;
 	}

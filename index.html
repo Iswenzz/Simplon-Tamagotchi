@@ -67,27 +67,21 @@
 
 	<!-- New Game -->
 	<article id="new" class="new container-fluid vh-100 animate__animated">
-		<main class="row h-100">
-			<!-- Customize -->
-			<section class="new-paper animate__animated animate__backInRight h-100 order-md-1 col-md-6 col-sm-12 d-flex flex-column align-items-center">
-				<h2 class="text-center">New Game</h2>
-				<div class="my-2">
-					<label for="form-name">Character Name</label>
-    				<input type="text" class="form-control" id="form-name" placeholder="Spyro">
-				</div>
-				<div class="my-2">
-					<label for="form-color" class="mr-3">Color</label>
-					<input id="form-color" data-slider-id='form-color-slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="1" data-slider-value="0"/>
-				</div>
-				<div class="mt-5 pt-5">
-					<button id="new-create" type="button" class="btn btn-lg btn-warning">Create !</button>
-				</div>
-			</section>
-			<!-- Profile Preview -->
-			<section class="new-preview animate__animated animate__backInLeft h-100 col-md-6 col-sm-12 d-flex flex-column align-items-center justify-content-center">
-				<img data-target="preview" id="char-preview" class="img-fluid w-100" src="assets/images/spyro-idle.gif" alt="Spyro Profile">
-			</section>
-		</main>
+		<section class="new-paper mx-auto animate__animated animate__backInRight h-100 d-flex flex-column align-items-center">
+			<h2 class="text-center">New Game</h2>
+			<div class="my-2">
+				<label for="form-name">Character Name</label>
+				<input type="text" class="form-control" id="form-name" placeholder="Spyro">
+			</div>
+			<div class="my-2">
+				<label for="form-color" class="mr-3">Color</label>
+				<input id="form-color" data-slider-id='form-color-slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="1" data-slider-value="0"/>
+			</div>
+			<div class="mt-5 pt-5">
+				<button id="new-create" type="button" class="btn btn-lg btn-warning">Create !</button>
+			</div>
+			<img data-target="preview" id="char-preview" class="img-fluid" src="assets/images/spyro-idle.gif" alt="Spyro Profile">
+		</section>
 	</article>
 
 	<!-- Game Over -->
@@ -108,12 +102,12 @@
 	<article id="game" class="game container-fluid vh-100 animate__animated">
 		<main class="row h-100 justify-content-center align-items-center">
 			<!-- Preview -->
-			<section class="game-preview col-md-6 col-sm-12">
-				<img data-target="game" id="char-preview" class="img-fluid w-100" src="assets/images/spyro-idle.gif" alt="Spyro Profile">
+			<section class="game-preview container col-md-6 col-sm-12 d-flex justify-content-center h-100">
+				<img data-target="game" id="char-preview" class="img-fluid m-auto" src="assets/images/spyro-idle.gif" alt="Spyro Profile">
 			</section>
 			<!-- Gameplay -->
-			<aside class="col-md-6 col-sm-12 align-self-start h-100">
-				<div class="h-100 d-flex flex-column justify-content-between align-items-center">
+			<aside class="game-gameplay-bg col-md-6 col-sm-12 align-self-start h-100">
+				<div class="game-gameplay h-100 d-flex flex-column justify-content-between align-items-center my-3 my-md-0">
 					<!-- Bars -->
 					<section class="game-bars w-100">
 						<ul class="bars list-unstyled d-flex flex-column justify-content-center">
@@ -123,17 +117,17 @@
 						</ul>
 					</section>
 					<section class="game-buttons m-3 p-4">
-						<button id="btn-sleep" class="btn btn-lg rounded-circle mx-2">
+						<button id="btn-sleep" class="btn btn-lg rounded-circle mx-1">
 							<i class="fas fa-bed"></i>
 						</button>
-						<button id="btn-playing" class="btn btn-lg rounded-circle mx-2">
+						<button id="btn-playing" class="btn btn-lg rounded-circle mx-1">
 							<i class="fas fa-smile"></i>
 						</button>
-						<button id="btn-hunting" class="btn btn-lg rounded-circle mx-2">
+						<button id="btn-hunting" class="btn btn-lg rounded-circle mx-1">
 							<i class="fab fa-grunt"></i>
 						</button>
 					</section>
-					<h1>YEET :)</h1>
+					<section></section>
 				</div>
 			</aside>
 		</main>

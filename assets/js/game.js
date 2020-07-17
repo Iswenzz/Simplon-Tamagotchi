@@ -159,7 +159,7 @@ const initProfiles = () =>
 const slider = new Slider('#form-color', {
 	formatter: (value) => {
 		if (selectedCharacter)
-			selectedCharacter.setColor(value);
+			selectedCharacter.color = value;
 		return value.toString();
 	}
 });
