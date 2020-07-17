@@ -95,31 +95,37 @@ class Character
 	}
 
 	/**
-	 * 
+	 * Sleep button callback.
 	 */
 	onSleep()
 	{
-		let val = this.sleep + Math.floor(Math.random() * 5) + 1;
+		this.previewElem.style.backgroundImage = "url(assets/images/spyro-sleep.gif)";
+
+		let val = this.sleep + 5;
 		if (val >= 100) val = 100;
 		this.setSleep(val);
 	}
 
 	/**
-	 * 
+	 * Playing button callback.
 	 */
 	onPlay()
 	{
-		let val = this.playing + Math.floor(Math.random() * 5) + 1;
+		this.previewElem.style.backgroundImage = "url(assets/images/spyro-play.gif)";
+
+		let val = this.playing + 5;
 		if (val >= 100) val = 100;
 		this.setPlaying(val);
 	}
 
 	/**
-	 * 
+	 * Hunting button callback.
 	 */
 	onHunt()
 	{
-		let val = this.hunting + Math.floor(Math.random() * 5) + 1;
+		this.previewElem.style.backgroundImage = "url(assets/images/spyro-hunt.gif)";
+
+		let val = this.hunting + 5;
 		if (val >= 100) val = 100;
 		this.setHunting(val);
 	}

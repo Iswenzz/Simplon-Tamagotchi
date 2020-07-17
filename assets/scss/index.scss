@@ -39,6 +39,7 @@ h1, h2, h3, button {
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: 50% 0;
+	transition: background-image 0.2s ease-in-out;
 }
 
 @mixin paper {
