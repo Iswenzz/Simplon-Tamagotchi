@@ -4,6 +4,7 @@
 class Character
 {
 	frameCount = 0;
+	previewElem = document.querySelector(".game-preview[data-target*=\"game\"]");
 
 	/**
 	 * Initialize a new Character instance.
@@ -23,7 +24,7 @@ class Character
 		this.playing = playing ?? 100;
 		this.hunting = hunting ?? 100;
 		this.color = color ?? 0;
-		this.isNew = isNew ?? true;	
+		this.isNew = isNew ?? true;
 	}
 
 	/**
@@ -93,19 +94,34 @@ class Character
 		elem.innerHTML = `${val}%`;
 	}
 
-	sleep()
+	/**
+	 * 
+	 */
+	onSleep()
 	{
-		
+		let val = this.sleep + Math.floor(Math.random() * 5) + 1;
+		if (val >= 100) val = 100;
+		this.setSleep(val);
 	}
 
-	play()
+	/**
+	 * 
+	 */
+	onPlay()
 	{
-
+		let val = this.playing + Math.floor(Math.random() * 5) + 1;
+		if (val >= 100) val = 100;
+		this.setPlaying(val);
 	}
 
-	hunt()
+	/**
+	 * 
+	 */
+	onHunt()
 	{
-		
+		let val = this.hunting + Math.floor(Math.random() * 5) + 1;
+		if (val >= 100) val = 100;
+		this.setHunting(val);
 	}
 
 	/**

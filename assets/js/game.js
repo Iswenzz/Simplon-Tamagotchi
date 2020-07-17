@@ -113,6 +113,12 @@ const gameLoop = () =>
 {
 	toggleViewport("game");
 	document.getElementById("new-create").removeEventListener("click", gameLoop);
+	document.getElementById("btn-sleep")
+		.addEventListener("click", selectedCharacter.onSleep.bind(selectedCharacter));
+	document.getElementById("btn-playing")
+		.addEventListener("click", selectedCharacter.onPlay.bind(selectedCharacter));
+	document.getElementById("btn-hunting")
+		.addEventListener("click", selectedCharacter.onHunt.bind(selectedCharacter));
 	selectedCharacter.initialize();
 	// audio_bgm.play();
 
@@ -124,7 +130,6 @@ const gameLoop = () =>
  */
 const gameOver = () =>
 {
-	clearInterval(mainLoop);
 	toggleViewport("gameover");
 }
 

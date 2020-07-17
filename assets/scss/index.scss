@@ -77,26 +77,44 @@ h1, h2, h3, button {
 	}
 
 	#{&}-buttons {
+		background-color: rgba(255, 206, 141, 0.753);
+		border-radius: 1em;
+
 		button {
 			width: 4em;
 			height: 4em;
-			background-color: whitesmoke;
+			background-color: whitesmoke !important;
+
+			i {
+				font-size: 2em;
+				text-align: center;
+			}
 			
 			&:active, &:hover, &:focus, &:visited {
 				box-shadow: none !important;
 			}
 		}
 
-		#btn-sleep {
-			background: url("");
+		@mixin action-btn($color) {
+			color: $color;
+			text-shadow: 0.1rem 0.3rem darken($color, 30%);
+			border: dashed 2px darken($color, 20%);
+
+			&:hover {
+				background-color: lighten($color, 10%) !important;
+			}
 		}
 
-		#btn-hunting {
-			background: url("");
+		#btn-sleep {
+			@include action-btn(lightblue);
 		}
 
 		#btn-playing {
-			background: url("");
+			@include action-btn(lightgreen);
+		}
+
+		#btn-hunting {
+			@include action-btn(salmon);
 		}
 	}
 }
