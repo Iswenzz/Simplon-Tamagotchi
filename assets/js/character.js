@@ -6,6 +6,11 @@ class Character
 	frameCount = 0;
 	previewElem = document.querySelector("#char-preview[data-target*=\"game\"]");
 
+	_colorVal = 0;
+	_sleepVal = 0;
+	_playingVal = 0;
+	_huntingVal = 0;
+
 	/**
 	 * Initialize a new Character instance.
 	 * @param {number} id - Profile index.
@@ -20,10 +25,10 @@ class Character
 	{
 		this.id = id;
 		this.name = name ?? "Spyro";
-		this.sleep = sleep ?? 100;
-		this.playing = playing ?? 100;
-		this.hunting = hunting ?? 100;
-		this.color = color ?? 0;
+		this._colorVal = color ?? 0;
+		this._sleepVal = sleep ?? 100;
+		this._playingVal = playing ?? 100;
+		this._huntingVal = hunting ?? 100;
 		this.isNew = isNew ?? true;
 	}
 
@@ -32,34 +37,42 @@ class Character
 	 */
 	initialize()
 	{
-		this.setColor(this.color);
-		this.setSleep(this.sleep);
-		this.setPlaying(this.playing);
-		this.setHunting(this.hunting);
+		this.color = this._colorVal;
+		this.sleep = this._sleepVal;
+		this.playing = this._playingVal;
+		this.hunting = this._huntingVal;
 	}
 
 	/**
 	 * Set the character hue color.
-	 * @param {number} color - Hue color degree.
+	 * @param {number} degree - Hue color degree.
 	 */
-	setColor(color)
+	set color(degree)
 	{
-		this.color = color;
+		this._colorVal = degree;
 		
 		document.querySelector("#char-preview[data-target*='game']")
-			.setAttribute("style", `filter: hue-rotate(${color}deg)`);
+			.setAttribute("style", `filter: hue-rotate(${degree}deg)`);
 		document.querySelector("#char-preview[data-target*='preview']")
-			.setAttribute("style", `filter: hue-rotate(${color}deg)`);
+			.setAttribute("style", `filter: hue-rotate(${degree}deg)`);
+	}
+
+	/**
+	 * Get the color degree.
+	 */
+	get color()
+	{
+		return this._colorVal;
 	}
 
 	/**
 	 * Set the character sleep stat.
 	 * @param {number} val - Sleep stat value.
 	 */
-	setSleep(val)
+	set sleep(val)
 	{
 		if (val < 0) val = 0;
-		this.sleep = val;
+		this._sleepVal = val;
 
 		let elem = document.querySelector(".bar-sleep[data-target*='game']");
 		elem.setAttribute("style", `width: ${val}%`);
@@ -67,13 +80,21 @@ class Character
 	}
 
 	/**
+	 * Get the character sleep stat
+	 */
+	get sleep()
+	{
+		return this._sleepVal;
+	}
+
+	/**
 	 * Set the character playing stat.
 	 * @param {number} val - Playing stat value.
 	 */
-	setPlaying(val)
+	set playing(val)
 	{
 		if (val < 0) val = 0;
-		this.playing = val;
+		this._playingVal = val;
 		
 		let elem = document.querySelector(".bar-playing[data-target*='game']");
 		elem.setAttribute("style", `width: ${val}%`);
@@ -81,17 +102,33 @@ class Character
 	}
 
 	/**
+	 * Get the character playing stat.
+	 */
+	get playing()
+	{
+		return this._playingVal;
+	}
+
+	/**
 	 * Set the character hunting stat.
 	 * @param {number} val - Hunting stat value.
 	 */
-	setHunting(val)
+	set hunting(val)
 	{
 		if (val < 0) val = 0;
-		this.hunting = val;
+		this._hunting = val;
 		
 		let elem = document.querySelector(".bar-hunting[data-target*='game']");
 		elem.setAttribute("style", `width: ${val}%`);
 		elem.innerHTML = `${val}%`;
+	}
+
+	/**
+	 * Get the character hunting stat.
+	 */
+	get hunting()
+	{
+		return this._huntingVal;
 	}
 
 	/**
@@ -104,7 +141,7 @@ class Character
 
 		let val = this.sleep + 5;
 		if (val >= 100) val = 100;
-		this.setSleep(val);
+		this.sleep = val;
 	}
 
 	/**
@@ -117,7 +154,7 @@ class Character
 
 		let val = this.playing + 5;
 		if (val >= 100) val = 100;
-		this.setPlaying(val);
+		this.playing = val;
 	}
 
 	/**
@@ -130,7 +167,7 @@ class Character
 
 		let val = this.hunting + 5;
 		if (val >= 100) val = 100;
-		this.setHunting(val);
+		this.hunting = val;
 	}
 
 	/**
@@ -141,9 +178,9 @@ class Character
 		const rnd = Math.floor(Math.random() * 6) + 1;
 		switch (Math.floor(Math.random() * 3))
 		{
-			case 0: 	this.setSleep(this.sleep - rnd); 		break;
-			case 1: 	this.setPlaying(this.playing - rnd); 	break;
-			case 2: 	this.setHunting(this.hunting - rnd);	break;
+			case 0: 	this.sleep -= rnd; 		break;
+			case 1: 	this.playing -= rnd; 	break;
+			case 2: 	this.hunting -= rnd;	break;
 		}
 		if (this.sleep <= 0 && this.playing <= 0 && this.hunting <= 0)
 			gameOver();
