@@ -143,8 +143,8 @@ const initProfiles = () =>
 		// profile click event
 		document.querySelector(`#profile-${p.id}`).addEventListener("click", selectProfile);
 		// profile delete event
-		document.querySelector(`#profile-${p.id} i[data-action*="delete"]`)
-			.addEventListener("click", (e) => {
+		document.querySelector(`#profile-${p.id} i[data-action*="delete"]`).addEventListener("click", (e) => 
+		{
 			e.stopPropagation();
 			characters[p.id] = new Character(p.id);
 			saveProfiles();

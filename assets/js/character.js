@@ -4,7 +4,7 @@
 class Character
 {
 	frameCount = 0;
-	previewElem = document.querySelector(".game-preview[data-target*=\"game\"]");
+	previewElem = document.querySelector("#char-preview[data-target*=\"game\"]");
 
 	/**
 	 * Initialize a new Character instance.
@@ -99,7 +99,8 @@ class Character
 	 */
 	onSleep()
 	{
-		this.previewElem.style.backgroundImage = "url(assets/images/spyro-sleep.gif)";
+		if (!this.previewElem.src.includes("assets/images/spyro-sleep.gif"))
+			this.previewElem.src = "assets/images/spyro-sleep.gif";
 
 		let val = this.sleep + 5;
 		if (val >= 100) val = 100;
@@ -111,7 +112,8 @@ class Character
 	 */
 	onPlay()
 	{
-		this.previewElem.style.backgroundImage = "url(assets/images/spyro-play.gif)";
+		if (!this.previewElem.src.includes("assets/images/spyro-play.gif"))
+			this.previewElem.src = "assets/images/spyro-play.gif";
 
 		let val = this.playing + 5;
 		if (val >= 100) val = 100;
@@ -123,7 +125,8 @@ class Character
 	 */
 	onHunt()
 	{
-		this.previewElem.style.backgroundImage = "url(assets/images/spyro-hunt.gif)";
+		if (!this.previewElem.src.includes("assets/images/spyro-hunt.gif"))
+			this.previewElem.src = "assets/images/spyro-hunt.gif";
 
 		let val = this.hunting + 5;
 		if (val >= 100) val = 100;
