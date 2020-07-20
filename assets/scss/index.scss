@@ -156,6 +156,32 @@ h1, h2, h3, button {
 	}
 }
 
+.modal {
+	#{&}-dialog {
+		margin: 0 auto;
+		height: 100%;
+		width: 100%;
+	}
+
+	#{&}-content {
+		@include paper;
+		background-color: transparent;
+		padding: 0 3em;
+		height: 100%;
+		border: none;
+
+		i {
+			font-size: 1.5em;
+		}
+
+		@include media(tablet_mobile, portrait) {
+			i {
+				font-size: 1em;
+			}
+		}
+	}
+}
+
 .gameover {
 	#{&}-paper {
 		@include paper;
