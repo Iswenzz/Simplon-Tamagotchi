@@ -1,7 +1,9 @@
 let mainLoop = null;
+let mainLoopPaused = false;
 let selectedCharacter = null; // Character selected to play/edit profile
 let characters = [];
 const audio_bgm = document.getElementById("bgm");
+const helpModal = document.getElementById("helpModal");
 
 /**
  * Load profiles from localstorage.
@@ -122,7 +124,7 @@ const gameLoop = () =>
 	selectedCharacter.initialize();
 	// audio_bgm.play();
 
-	mainLoop = setInterval(() => selectedCharacter.frame(), 1000);
+	mainLoop = setInterval(() => mainLoopPaused ? null : selectedCharacter.frame(), 100);
 }
 
 /**
@@ -130,8 +132,19 @@ const gameLoop = () =>
  */
 const gameOver = () =>
 {
+	clearInterval(mainLoop);
 	toggleViewport("gameover");
+
+	// delete profile
+	const index = characters.indexOf(selectedCharacter);
+	characters[index] = new Character(index);
+	saveProfiles();
 }
+
+/**
+ * Callback when clicking the gameover image.
+ */
+document.getElementById("gameover-img").addEventListener("click", () => startGame());
 
 /**
  * Initialize profile events.
@@ -164,6 +177,19 @@ const slider = new Slider('#form-color', {
 	}
 });
 
-loadProfiles();
-initProfiles();
-toggleViewport("profile");
+/**
+ * Modals callbacks to pause the game.
+ */
+$(document).on("shown.bs.modal", "#helpModal", () => mainLoopPaused = true);
+$(document).on("hidden.bs.modal", "#helpModal", () => mainLoopPaused = false);
+
+/**
+ * Entry point of the game.
+ */
+const startGame = () =>
+{
+	loadProfiles();
+	initProfiles();
+	toggleViewport("profile");
+}
+startGame();

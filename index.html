@@ -88,15 +88,8 @@
 
 	<!-- Game Over -->
 	<article id="gameover" class="gameover container-fluid vh-100 animate__animated">
-		<section class="gameover-paper mx-auto h-100 d-flex flex-column align-items-center justify-content-center">
-			<div class="row w-100">
-				<div class="col-md-6 col-sm-12">
-
-				</div>
-				<div class="col-md-6 col-sm-12">
-					<h2>Game Over !</h2>
-				</div>
-			</div>
+		<section class="container w-100 h-100 d-flex justify-content-center align-items-center">
+			<img id="gameover-img" height="50%" width="auto" class="rounded-circle animate__animated animate__delay-1s animate__jello" src="assets/images/game-over.webp" alt="game over">
 		</section>
 	</article>
 
@@ -136,13 +129,12 @@
 	</article>
 
 	<!-- Help Modal -->
-	<button type="button" class="btn btn-warning text-white m-2 fixed-top rounded-circle" data-toggle="modal" data-target="#helpModal">
-		?
-	</button>
+	<button id="helpModal-open" type="button" class="btn btn-warning text-white m-2 fixed-top rounded-circle" data-toggle="modal" data-target="#helpModal">?</button>
 	<article class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="helpModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 				<div class="container px-2 px-lg-5 mx-md-3">
+					<button id="helpModal-close" type="button" class="btn btn-danger m-2 text-white float-right rounded-circle" data-dismiss="modal">X</button>
 					<h2 class="text-center">
 						Game Rules
 					</h2>
