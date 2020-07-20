@@ -178,15 +178,11 @@ class Character
 	frame()
 	{
 		// pick a random bar that isn't empty
-		let rndBarPick = 0;
-		do
-		{
-			rndBarPick = Math.floor(Math.random() * 3);
-		} 
-		while (this.bars[rndBarPick] <= 0);
-
+		const validBars = this.bars.map((item, i) => item > 0 ? i : null).filter(u => u !== null);
+		const rndBarPick = Math.floor(Math.random() * validBars.length); 
 		const rndDecrease = Math.floor(Math.random() * 6) + 1;
-		switch (rndBarPick)
+
+		switch (validBars[rndBarPick])
 		{
 			case 0: 	this.sleep -= rndDecrease; 		break;
 			case 1: 	this.playing -= rndDecrease; 	break;
