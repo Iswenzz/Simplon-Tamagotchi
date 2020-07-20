@@ -122,7 +122,6 @@ const gameLoop = () =>
 	document.getElementById("btn-hunting")
 		.addEventListener("click", selectedCharacter.onHunt.bind(selectedCharacter));
 	selectedCharacter.initialize();
-	// audio_bgm.play();
 
 	mainLoop = setInterval(() => mainLoopPaused ? null : selectedCharacter.frame(), 100);
 }
@@ -184,12 +183,20 @@ $(document).on("shown.bs.modal", "#helpModal", () => mainLoopPaused = true);
 $(document).on("hidden.bs.modal", "#helpModal", () => mainLoopPaused = false);
 
 /**
+ * Start game button callback.
+ */
+document.getElementById("start-btn").addEventListener("click", () => {
+	toggleViewport("profile");
+	audio_bgm.play();
+});
+
+/**
  * Entry point of the game.
  */
 const startGame = () =>
 {
 	loadProfiles();
 	initProfiles();
-	toggleViewport("profile");
+	toggleViewport("start");
 }
 startGame();
