@@ -20,48 +20,50 @@
 		<!-- Profile Saves -->
 		<section class="profile-paper mx-auto h-100 d-flex flex-column align-items-center">
 			<h2 class="text-center">Profile</h2>
-			<div data-id="0" id="profile-0" class="profile-save d-flex justify-content-between">
-				<img id="char-preview" class="img-fluid" width="150" src="assets/images/spyro-idle.gif" alt="Spyro Profile">
-				<div data-id="0" class="w-100">
-					<h5 id="name" class="mt-2">Name</h5>
-					<ul data-id="0" class="bars list-unstyled d-flex flex-column justify-content-center">
-						<li class="bar-sleep"></li>
-						<li class="bar-playing"></li>
-						<li class="bar-hunting"></li>
-					</ul>
+			<section class="profile-section w-100 mx-auto d-flex flex-column align-items-center">
+				<div data-id="0" id="profile-0" class="profile-save d-flex justify-content-between">
+					<img id="char-preview" class="img-fluid" width="150" src="assets/images/spyro-idle.gif" alt="Spyro Profile">
+					<div data-id="0" class="w-100">
+						<h5 id="name" class="mt-2">Name</h5>
+						<ul data-id="0" class="bars list-unstyled d-flex flex-column justify-content-center">
+							<li class="bar-sleep"></li>
+							<li class="bar-playing"></li>
+							<li class="bar-hunting"></li>
+						</ul>
+					</div>
+					<div>
+						<i data-action="delete" class="far fa-trash-alt p-3"></i>
+					</div>
 				</div>
-				<div>
-					<i data-action="delete" class="far fa-trash-alt p-3"></i>
+				<div data-id="1" id="profile-1" class="profile-save d-flex justify-content-between">
+					<img id="char-preview" class="img-fluid" width="150" src="assets/images/spyro-idle.gif" alt="Spyro Profile">
+					<div data-id="1" class="w-100">
+						<h5 id="name" class="mt-2">Name</h5>
+						<ul data-id="1" class="bars list-unstyled d-flex flex-column justify-content-center">
+							<li class="bar-sleep"></li>
+							<li class="bar-playing"></li>
+							<li class="bar-hunting"></li>
+						</ul>
+					</div>
+					<div>
+						<i data-action="delete" class="far fa-trash-alt p-3"></i>
+					</div>
 				</div>
-			</div>
-			<div data-id="1" id="profile-1" class="profile-save d-flex justify-content-between">
-				<img id="char-preview" class="img-fluid" width="150" src="assets/images/spyro-idle.gif" alt="Spyro Profile">
-				<div data-id="1" class="w-100">
-					<h5 id="name" class="mt-2">Name</h5>
-					<ul data-id="1" class="bars list-unstyled d-flex flex-column justify-content-center">
-						<li class="bar-sleep"></li>
-						<li class="bar-playing"></li>
-						<li class="bar-hunting"></li>
-					</ul>
+				<div data-id="2" id="profile-2" class="profile-save d-flex justify-content-between">
+					<img id="char-preview" class="img-fluid" width="150" src="assets/images/spyro-idle.gif" alt="Spyro Profile">
+					<div data-id="2" class="w-100">
+						<h5 id="name" class="mt-2">Name</h5>
+						<ul data-id="2" class="bars list-unstyled d-flex flex-column justify-content-center">
+							<li class="bar-sleep"></li>
+							<li class="bar-playing"></li>
+							<li class="bar-hunting"></li>
+						</ul>
+					</div>
+					<div>
+						<i data-action="delete" class="far fa-trash-alt p-3"></i>
+					</div>
 				</div>
-				<div>
-					<i data-action="delete" class="far fa-trash-alt p-3"></i>
-				</div>
-			</div>
-			<div data-id="2" id="profile-2" class="profile-save d-flex justify-content-between">
-				<img id="char-preview" class="img-fluid" width="150" src="assets/images/spyro-idle.gif" alt="Spyro Profile">
-				<div data-id="2" class="w-100">
-					<h5 id="name" class="mt-2">Name</h5>
-					<ul data-id="2" class="bars list-unstyled d-flex flex-column justify-content-center">
-						<li class="bar-sleep"></li>
-						<li class="bar-playing"></li>
-						<li class="bar-hunting"></li>
-					</ul>
-				</div>
-				<div>
-					<i data-action="delete" class="far fa-trash-alt p-3"></i>
-				</div>
-			</div>
+			</section>
 		</section>
 	</article>
 
@@ -77,7 +79,7 @@
 				<label for="form-color" class="mr-3">Color</label>
 				<input id="form-color" data-slider-id='form-color-slider' type="text" data-slider-min="0" data-slider-max="360" data-slider-step="1" data-slider-value="0"/>
 			</div>
-			<div class="mt-5 pt-5">
+			<div class="my-3">
 				<button id="new-create" type="button" class="btn btn-lg btn-warning">Create !</button>
 			</div>
 			<img data-target="preview" id="char-preview" class="img-fluid" src="assets/images/spyro-idle.gif" alt="Spyro Profile">
@@ -116,7 +118,7 @@
 							<li data-target="game" class="bar-hunting"></li>
 						</ul>
 					</section>
-					<section class="game-buttons m-3 p-4">
+					<section class="game-buttons m-0 p-4">
 						<button id="btn-sleep" class="btn btn-lg rounded-circle mx-1">
 							<i class="fas fa-bed"></i>
 						</button>

@@ -25,7 +25,7 @@ html, body {
 	background-attachment: fixed;
 	background-size: cover;
 	background-color: whitesmoke;
-	overflow: hidden;
+	overflow-x: hidden;
 }
 
 h1, h2, h3, button {
@@ -59,6 +59,7 @@ h1, h2, h3, button {
 }
 
 .game {
+	overflow: hidden;
 	@include media(tablet_mobile, portrait) {
 		background-image: none;
 		background-color: whitesmoke;
@@ -201,12 +202,20 @@ h1, h2, h3, button {
 		}
 	}
 
+	#{&}-section {
+		transform-origin: top center;
+
+		@include media(tablet_mobile, portrait) {
+			transform: scale(0.6);
+		}
+	}
+
 	#{&}-save {
-		min-height: 10em;
 		width: 80%;
+		min-height: 10em;
+		margin: 1em 0;
 		border: dotted 3px brown;
 		text-align: center;
-		transform: scale(0.8);
 
 		ul li {
 			white-space: nowrap;
@@ -223,13 +232,17 @@ h1, h2, h3, button {
 
 		i {
 			transition: 0.2s;
+
 			&:hover {
 				color: red;
 			}
 		}
 
 		@include media(tablet_mobile, portrait) {
-			min-height: 8em;
+			img {
+				width: 100px;
+				height: 80px;
+			}
 		}
 	}
 }
@@ -264,7 +277,7 @@ h1, h2, h3, button {
 		float: left;
 
 		@include media(tablet_mobile, portrait) {
-			left: 1em;
+			left: 0.4em;
 			color: darken($color, 50%);
 		}
 	}
