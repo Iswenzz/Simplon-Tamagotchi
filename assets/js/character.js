@@ -30,6 +30,8 @@ class Character
 		this._playingVal = playing ?? 100;
 		this._huntingVal = hunting ?? 100;
 		this.isNew = isNew ?? true;
+
+		this.bars = [this.sleep, this.playing, this.hunting];
 	}
 
 	/**
@@ -175,12 +177,20 @@ class Character
 	 */
 	frame()
 	{
-		const rnd = Math.floor(Math.random() * 6) + 1;
-		switch (Math.floor(Math.random() * 3))
+		// pick a random bar that isn't empty
+		let rndBarPick = 0;
+		do
 		{
-			case 0: 	this.sleep -= rnd; 		break;
-			case 1: 	this.playing -= rnd; 	break;
-			case 2: 	this.hunting -= rnd;	break;
+			rndBarPick = Math.floor(Math.random() * 3);
+		} 
+		while (this.bars[rndBarPick] <= 0);
+
+		const rndDecrease = Math.floor(Math.random() * 6) + 1;
+		switch (rndBarPick)
+		{
+			case 0: 	this.sleep -= rndDecrease; 		break;
+			case 1: 	this.playing -= rndDecrease; 	break;
+			case 2: 	this.hunting -= rndDecrease;	break;
 		}
 		if (this.sleep <= 0 && this.playing <= 0 && this.hunting <= 0)
 			gameOver();
