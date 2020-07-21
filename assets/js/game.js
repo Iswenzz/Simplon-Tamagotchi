@@ -2,6 +2,9 @@ let mainLoop = null;
 let mainLoopPaused = false;
 let selectedCharacter = null; // Character selected to play/edit profile
 let characters = [];
+const gameConsole = new GameConsole(
+	document.getElementById("game-console-input"),
+	document.getElementById("game-console-textarea"));
 const audio_bgm = document.getElementById("bgm");
 const helpModal = document.getElementById("helpModal");
 
@@ -123,7 +126,7 @@ const gameLoop = () =>
 		.addEventListener("click", selectedCharacter.onHunt.bind(selectedCharacter));
 	selectedCharacter.initialize();
 
-	mainLoop = setInterval(() => mainLoopPaused ? null : selectedCharacter.frame(), 100);
+	mainLoop = setInterval(() => mainLoopPaused ? null : selectedCharacter.frame(), 10000);
 }
 
 /**
@@ -189,6 +192,12 @@ document.getElementById("start-btn").addEventListener("click", () => {
 	toggleViewport("profile");
 	audio_bgm.play();
 });
+
+/**
+ * 
+ */
+document.getElementById("game-console-input")
+	.addEventListener("keydown", gameConsole.onKeyDown.bind(gameConsole));
 
 /**
  * Entry point of the game.

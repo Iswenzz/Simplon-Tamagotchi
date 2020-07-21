@@ -65,6 +65,12 @@ h1, h2, h3, button {
 		background-color: whitesmoke;
 	}
 
+	#{&}-console {
+		position: absolute;
+		top: 0;
+		left: 50%;
+	}
+
 	#{&}-bars {
 		ul li {
 			white-space: nowrap;
