@@ -53,9 +53,42 @@ h1, h2, h3, button {
 	}
 }
 
-.game, .new, .profile, .gameover {
+.game, .new, .profile, .gameover, .start {
 	position: absolute;
 	top: 0;
+}
+
+.console {
+	z-index: 1200;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+
+	input, textarea, span {
+		resize: none;
+		background-color: rgba(66, 66, 66, 0.856) !important;
+		border: none;
+		border-radius: 0;
+		color: whitesmoke !important;
+
+		&:active, &:hover, &:visited, &:focus {
+			border: none !important;
+			box-shadow: none !important;
+		}
+	}
+
+	#{&}-input {
+		div, input, span {
+			margin: 0;
+			border-bottom-left-radius: 1em;
+			border-bottom-right-radius: 1em;
+		}
+		
+		span {
+			padding-right: 0;
+		}
+	}
 }
 
 .game {
@@ -63,12 +96,6 @@ h1, h2, h3, button {
 	@include media(tablet_mobile, portrait) {
 		background-image: none;
 		background-color: whitesmoke;
-	}
-
-	#{&}-console {
-		position: absolute;
-		top: 0;
-		left: 50%;
 	}
 
 	#{&}-bars {

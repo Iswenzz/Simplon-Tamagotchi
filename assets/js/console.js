@@ -1,31 +1,41 @@
 /**
- * 
+ * Game console IO.
  */
 class GameConsole
 {
 	stack = [];
+	buffer = [];
 	cmd = {
 		sleep: {
-			msg: "Sleep",
-			callback: null
+			msg: null,
+			callback: () => this.character.onSleep()
 		},
 		play: {
-			msg: "Play",
-			callback: null
+			msg: null,
+			callback: () => this.character.onPlay()
 		},
 		hunt: {
-			msg: "Hunt",
-			callback: null
+			msg: null,
+			callback: () => this.character.onHunt()
 		},
+		clear: {
+			msg: null,
+			callback: () => this.clear()
+		},
+		help: {
+			msg: "Available commands: help, sleep, play, hunt, clear.",
+			callback: null
+		}
 	};
 
 	/**
-	 * 
-	 * @param {HTMLInputElement} input 
-	 * @param {HTMLTextAreaElement} output 
+	 * Initialize a new GameConsole object with the specified input / output element.
+	 * @param {HTMLInputElement} input - The console input element.
+	 * @param {HTMLTextAreaElement} output - The console output element.
 	 */
-	constructor(input, output) 
+	constructor(character, input, output) 
 	{
+		this.character = character;
 		this.input = input;
 		this.output = output;
 	}
@@ -36,13 +46,30 @@ class GameConsole
 	 */
 	onKeyDown(e)
 	{
-		// check if the command exists on ENTER keydown
-		if (e.keyCode === 13 && Object.keys(this.cmd).some(i => e.target.value === i))
+		switch (e.keyCode)
 		{
-			this.stack.push(e.target.value);
-			this.write(this.cmd[e.target.value].msg);
-			this.cmd[e.target.value].callback();
-			e.target.value = "";
+			case 13: // ENTER
+			{
+				const val = e.target.value;
+				this.buffer.push(val);
+				// check if the command exists
+				if (Object.keys(this.cmd).some(i => val === i))
+				{
+					this.stack.push(val);
+					if (this.cmd[val].msg)
+						this.write(this.cmd[val].msg);
+					if (this.cmd[val].callback)
+						this.cmd[val].callback();
+					e.target.value = "";
+				}
+				else // unknown command
+				{
+					e.target.value = "";
+					this.write("Unknown command, type 'help' to get a list of available commands !");
+				}
+				this.output.scrollTop = this.output.scrollHeight;
+			}
+			break;
 		}
 	}
 
@@ -53,5 +80,13 @@ class GameConsole
 	write(msg)
 	{
 		this.output.value += msg + "\n";
+	}
+
+	/**
+	 * Clear the console output.
+	 */
+	clear()
+	{
+		this.output.value = "";
 	}
 }

@@ -16,7 +16,7 @@
 </head>
 <body>
 	<!-- Start Game -->
-	<article id="start" class="gameover container-fluid vh-100 animate__animated">
+	<article id="start" class="start container-fluid vh-100 animate__animated">
 		<section class="container w-100 h-100 d-flex flex-column justify-content-center align-items-center">
 			<img id="start-img" height="50%" width="auto" class="animate__animated animate__delay-1s animate__pulse" src="assets/images/spyro-logo.png" alt="spyro logo">
 			<button id="start-btn" class="btn btn-lg btn-danger rounded-circle">START !</button>
@@ -101,6 +101,19 @@
 		</section>
 	</article>
 
+	<!-- Console -->
+	<article class="console collapse" id="collapseConsole">
+		<section class="container mx-auto">
+			<textarea class="form-control" id="game-console-textarea" rows="5" disabled></textarea>
+			<div class="console-input input-group mb-2">
+				<div class="input-group-prepend">
+				  <span class="input-group-text" id="basic-addon1">&gt;</span>
+				</div>
+				<input id="game-console-input" class="form-control">
+			</div>
+		</section>
+	</article>
+
 	<!-- Game -->
 	<article id="game" class="game container-fluid vh-100 animate__animated">
 		<main class="row h-100 justify-content-center align-items-center">
@@ -133,11 +146,10 @@
 					<section></section>
 				</div>
 			</section>
-			<!-- Console -->
-			<section class="game-console">
-				<textarea class="form-control" id="game-console-textarea" rows="3"></textarea>
-				<input id="game-console-input" class="form-control">
-			</section>
+			<!-- Console Button -->
+			<button id="helpModal-open" type="button" data-toggle="collapse" data-target="#collapseConsole" class="btn btn-secondary text-white m-2 fixed-bottom rounded-circle p-2 animate__animated animate__delay-1s animate__fadeInUp">
+				<i class="far fa-keyboard"></i>
+			</button>
 		</main>
 	</article>
 

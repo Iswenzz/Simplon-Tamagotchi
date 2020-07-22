@@ -2,9 +2,7 @@ let mainLoop = null;
 let mainLoopPaused = false;
 let selectedCharacter = null; // Character selected to play/edit profile
 let characters = [];
-const gameConsole = new GameConsole(
-	document.getElementById("game-console-input"),
-	document.getElementById("game-console-textarea"));
+let gameConsole = null;
 const audio_bgm = document.getElementById("bgm");
 const helpModal = document.getElementById("helpModal");
 
@@ -117,13 +115,24 @@ const newProfile = () =>
 const gameLoop = () =>
 {
 	toggleViewport("game");
+	// create profile listener
 	document.getElementById("new-create").removeEventListener("click", gameLoop);
+
+	// gameplay button listeners
 	document.getElementById("btn-sleep")
 		.addEventListener("click", selectedCharacter.onSleep.bind(selectedCharacter));
 	document.getElementById("btn-playing")
 		.addEventListener("click", selectedCharacter.onPlay.bind(selectedCharacter));
 	document.getElementById("btn-hunting")
 		.addEventListener("click", selectedCharacter.onHunt.bind(selectedCharacter));
+
+	// game console listeners
+	gameConsole = new GameConsole(selectedCharacter,
+		document.getElementById("game-console-input"),
+		document.getElementById("game-console-textarea"));
+	document.getElementById("game-console-input")
+		.addEventListener("keydown", gameConsole.onKeyDown.bind(gameConsole));
+
 	selectedCharacter.initialize();
 
 	mainLoop = setInterval(() => mainLoopPaused ? null : selectedCharacter.frame(), 10000);
@@ -190,14 +199,8 @@ $(document).on("hidden.bs.modal", "#helpModal", () => mainLoopPaused = false);
  */
 document.getElementById("start-btn").addEventListener("click", () => {
 	toggleViewport("profile");
-	audio_bgm.play();
+	// audio_bgm.play();
 });
-
-/**
- * 
- */
-document.getElementById("game-console-input")
-	.addEventListener("keydown", gameConsole.onKeyDown.bind(gameConsole));
 
 /**
  * Entry point of the game.
