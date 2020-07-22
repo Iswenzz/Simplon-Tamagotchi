@@ -53,7 +53,7 @@ class GameConsole
 		{
 			case 13: // ENTER
 			{
-				const val = e.target.value;
+				const val = e.target.value.toLowerCase();
 				this.buffer.push(val);
 				// check if the command exists
 				if (Object.keys(this.cmd).some(i => val === i))
@@ -78,6 +78,7 @@ class GameConsole
 
 			case 38: // UP ARROW
 			{
+				// get the previous command
 				if (this.prevStack.length > 0)
 				{
 					const val = this.prevStack.pop();
@@ -89,6 +90,7 @@ class GameConsole
 
 			case 40: // DOWN ARROW
 			{
+				// get the next command from the stack
 				if (this.nextStack.length > 0)
 				{
 					const val = this.nextStack.pop();
