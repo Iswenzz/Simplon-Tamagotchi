@@ -34,7 +34,7 @@ class GameConsole
 			callback: () => this.clear()
 		},
 		help: {
-			msg: "Available commands: help, sleep, play, hunt, clear.",
+			msg: "Available commands: help, sleep, play, hunt, rainbow, clear.",
 			callback: null
 		}
 	};
