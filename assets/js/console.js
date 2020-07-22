@@ -10,15 +10,15 @@ class GameConsole
 	buffer = [];
 	cmd = {
 		sleep: {
-			msg: null,
+			msg: "Your character is now sleeping.",
 			callback: () => this.character.onSleep()
 		},
 		play: {
-			msg: null,
+			msg: "Your character is no playing.",
 			callback: () => this.character.onPlay()
 		},
 		hunt: {
-			msg: null,
+			msg: "Your character is no hunting.",
 			callback: () => this.character.onHunt()
 		},
 		clear: {
