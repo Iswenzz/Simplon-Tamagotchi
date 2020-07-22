@@ -3,6 +3,9 @@
  */
 class Viewport
 {
+	isAnimOutDone = false;
+	isAnimInDone = false;
+
 	/**
 	 * Initialize a new viewport with the specified name & css animations.
 	 * @param {string} name - Viewport ID name.
@@ -25,12 +28,16 @@ class Viewport
 		this.element.classList.remove("d-none");
 		this.element.classList.remove(this.animOut);
 		this.element.classList.add(this.animIn);
+		this.isAnimInDone = false;
+		this.isAnimOutDone = true;
 		const showHandler = () => {
 			this.element.removeEventListener("animationend", showHandler);
 			this.element.classList.remove(this.animIn);
 			this.element.classList.remove("d-none");
+			this.isAnimInDone = true;
 		};
 		this.element.addEventListener("animationend", showHandler);
+		selectedViewport = this;
 	}
 
 	/**
@@ -40,10 +47,13 @@ class Viewport
 	{
 		this.element.classList.remove(this.animIn);
 		this.element.classList.add(this.animOut);
+		this.isAnimOutDone = true;
+		this.isAnimInDone = false;
 		const hideHandler = () => {
 			this.element.removeEventListener("animationend", hideHandler);
 			this.element.classList.remove(this.animOut);
 			this.element.classList.add("d-none");
+			this.isAnimOutDone = true;
 		};
 		this.element.addEventListener("animationend", hideHandler);
 	}
@@ -67,5 +77,5 @@ const viewports = [
 const toggleViewport = (viewportName) =>
 {
 	for (let v of viewports)
-		v.name == viewportName ? v.show() : v.hide();
+		v.name === viewportName ? v.show() : v.hide();
 }
