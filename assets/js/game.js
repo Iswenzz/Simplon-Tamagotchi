@@ -1,10 +1,42 @@
 let mainLoop = null;
 let mainLoopPaused = false;
 let selectedCharacter = null; // Character selected to play/edit profile
+let selectedViewport = null;
 let characters = [];
 let gameConsole = null;
 const audio_bgm = document.getElementById("bgm");
 const helpModal = document.getElementById("helpModal");
+
+/**
+ * Slider callback to change the selected char/preview color & slider formatting.
+ */
+const slider = new Slider('#form-color', {
+	formatter: (value) => {
+		if (selectedCharacter)
+			selectedCharacter.color = value;
+		return value.toString();
+	}
+});
+
+/**
+ * Initialize profile events.
+ */
+const initProfiles = () =>
+{
+	for (let p of characters)
+	{
+		// profile click event
+		document.querySelector(`#profile-${p.id}`).addEventListener("click", selectProfile);
+		// profile delete event
+		document.querySelector(`#profile-${p.id} i[data-action*="delete"]`).addEventListener("click", (e) => 
+		{
+			e.stopPropagation();
+			characters[p.id] = new Character(p.id);
+			saveProfiles();
+			loadProfiles();
+		});
+	}
+}
 
 /**
  * Load profiles from localstorage.
@@ -78,10 +110,16 @@ const saveProfiles = () =>
  * Select a profile to start the game or create a new profile.
  * @param {MouseEvent} e - Click event args.
  */
-const selectProfile = (e) =>
+const selectProfile = (e) => 
+	selectProfileById(parseInt(e.target.parentNode.getAttribute("data-id"), 10));
+
+/**
+ * Select a profile to start the game or create a new profile from the specified profile ID.
+ * @param {number} id - The profile ID.
+ */
+const selectProfileById = (id) =>
 {
-	const profileId = parseInt(e.target.parentNode.getAttribute("data-id"), 10);
-	selectedCharacter = characters[profileId];
+	selectedCharacter = characters[id];
 	if (!selectedCharacter)
 		return;
 
@@ -152,63 +190,23 @@ const gameOver = () =>
 	saveProfiles();
 }
 
-/**
- * Callback when clicking the gameover image.
- */
-document.getElementById("gameover-img").addEventListener("click", () => startGame());
 
 /**
- * Initialize profile events.
+ * Start the game audio & switch to game profiles.
  */
-const initProfiles = () =>
+const startGame = () =>
 {
-	for (let p of characters)
-	{
-		// profile click event
-		document.querySelector(`#profile-${p.id}`).addEventListener("click", selectProfile);
-		// profile delete event
-		document.querySelector(`#profile-${p.id} i[data-action*="delete"]`).addEventListener("click", (e) => 
-		{
-			e.stopPropagation();
-			characters[p.id] = new Character(p.id);
-			saveProfiles();
-			loadProfiles();
-		});
-	}
-}
-
-/**
- * Slider callback to change the selected char/preview color & slider formatting.
- */
-const slider = new Slider('#form-color', {
-	formatter: (value) => {
-		if (selectedCharacter)
-			selectedCharacter.color = value;
-		return value.toString();
-	}
-});
-
-/**
- * Modals callbacks to pause the game.
- */
-$(document).on("shown.bs.modal", "#helpModal", () => mainLoopPaused = true);
-$(document).on("hidden.bs.modal", "#helpModal", () => mainLoopPaused = false);
-
-/**
- * Start game button callback.
- */
-document.getElementById("start-btn").addEventListener("click", () => {
 	toggleViewport("profile");
-	// audio_bgm.play();
-});
+	audio_bgm.play();
+}
 
 /**
  * Entry point of the game.
  */
-const startGame = () =>
+const loadGame = () =>
 {
 	loadProfiles();
 	initProfiles();
 	toggleViewport("start");
 }
-startGame();
+loadGame();
