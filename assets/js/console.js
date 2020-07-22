@@ -4,6 +4,9 @@
 class GameConsole
 {
 	stack = [];
+	prevStack = [];
+	nextStack = [];
+
 	buffer = [];
 	cmd = {
 		sleep: {
@@ -56,6 +59,8 @@ class GameConsole
 				if (Object.keys(this.cmd).some(i => val === i))
 				{
 					this.stack.push(val);
+					this.prevStack = this.stack;
+					this.nextStack = [];
 					if (this.cmd[val].msg)
 						this.write(this.cmd[val].msg);
 					if (this.cmd[val].callback)
@@ -65,9 +70,31 @@ class GameConsole
 				else // unknown command
 				{
 					e.target.value = "";
-					this.write("Unknown command, type 'help' to get a list of available commands !");
+					this.write(`Unknown command '${val}'. Type 'help' to get a list of available commands !`);
 				}
 				this.output.scrollTop = this.output.scrollHeight;
+			}
+			break;
+
+			case 38: // UP ARROW
+			{
+				if (this.prevStack.length > 0)
+				{
+					const val = this.prevStack.pop();
+					this.input.value = val;
+					this.nextStack.push(val);
+				}
+			}
+			break;
+
+			case 40: // DOWN ARROW
+			{
+				if (this.nextStack.length > 0)
+				{
+					const val = this.nextStack.pop();
+					this.input.value = val;
+					this.prevStack.push(val);
+				}
 			}
 			break;
 		}
