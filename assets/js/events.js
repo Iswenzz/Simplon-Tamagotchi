@@ -19,10 +19,10 @@ const hotkeys = {
 		51: { callback: () => selectedCharacter.onHunt() },
 		27: { callback: () => null },
 		9: { callback: () => $("#helpModal").modal("toggle") },
-		222: { callback: () => $("#collapseConsole").collapse("toggle") }
+		222: { callback: () => gameConsole.open() }
 	},
 	gameover: {
-		13: { callback: gameOver },
+		13: { callback: loadGame },
 	}
 };
 
@@ -49,7 +49,7 @@ $(document).on("hidden.bs.modal", "#helpModal", () => mainLoopPaused = false);
 /**
  * Callback when clicking the gameover image.
  */
-document.getElementById("gameover-img").addEventListener("click", startGame);
+document.getElementById("gameover-img").addEventListener("click", loadGame);
 
 /**
  * Start game button callback.
