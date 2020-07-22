@@ -141,9 +141,7 @@ class Character
 		if (!this.previewElem.src.includes("assets/images/spyro-sleep.gif"))
 			this.previewElem.src = "assets/images/spyro-sleep.gif";
 
-		let val = this.sleep + 10;
-		if (val >= 100) val = 100;
-		this.sleep = val;
+		this.sleep = (this.sleep + 10) >= 100 ? 100 : this.sleep + 10;
 	}
 
 	/**
@@ -154,9 +152,7 @@ class Character
 		if (!this.previewElem.src.includes("assets/images/spyro-play.gif"))
 			this.previewElem.src = "assets/images/spyro-play.gif";
 
-		let val = this.playing + 10;
-		if (val >= 100) val = 100;
-		this.playing = val;
+		this.playing = (this.playing + 10) >= 100 ? 100 : this.playing + 10;
 	}
 
 	/**
@@ -167,9 +163,17 @@ class Character
 		if (!this.previewElem.src.includes("assets/images/spyro-hunt.gif"))
 			this.previewElem.src = "assets/images/spyro-hunt.gif";
 
-		let val = this.hunting + 10;
-		if (val >= 100) val = 100;
-		this.hunting = val;
+		this.hunting = (this.hunting + 10) >= 100 ? 100 : this.hunting + 10;
+	}
+
+	/**
+	 * Kill the character.
+	 */
+	kill()
+	{
+		this.sleep = 0;
+		this.playing = 0;
+		this.hunting = 0;
 	}
 
 	/**
