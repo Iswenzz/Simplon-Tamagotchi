@@ -16,7 +16,7 @@
 </head>
 <body>
 	<!-- Start Game -->
-	<article id="start" class="start container-fluid vh-100 animate__animated">
+	<article id="start" class="start d-none container-fluid vh-100 animate__animated">
 		<section class="container w-100 h-100 d-flex flex-column justify-content-center align-items-center">
 			<img id="start-img" height="50%" width="auto" class="animate__animated animate__delay-1s animate__pulse" src="assets/images/spyro-logo.png" alt="spyro logo">
 			<button id="start-btn" class="btn btn-lg btn-danger rounded-circle">START !</button>
@@ -24,7 +24,7 @@
 	</article>
 
 	<!-- Profile -->
-	<article id="profile" class="profile animate__animated container-fluid vh-100">
+	<article id="profile" class="profile d-none animate__animated container-fluid vh-100">
 		<!-- Profile Saves -->
 		<section class="profile-paper mx-auto h-100 d-flex flex-column align-items-center">
 			<h2 class="text-center">Profile</h2>
@@ -76,7 +76,7 @@
 	</article>
 
 	<!-- New Game -->
-	<article id="new" class="new container-fluid vh-100 animate__animated">
+	<article id="new" class="new d-none container-fluid vh-100 animate__animated">
 		<section class="new-paper mx-auto animate__animated animate__backInRight h-100 d-flex flex-column align-items-center">
 			<h2 class="text-center">New Game</h2>
 			<div class="my-2">
@@ -95,19 +95,21 @@
 	</article>
 
 	<!-- Game Over -->
-	<article id="gameover" class="gameover container-fluid vh-100 animate__animated">
+	<article id="gameover" class="gameover d-none container-fluid vh-100 animate__animated">
 		<section class="container w-100 h-100 d-flex justify-content-center align-items-center">
 			<img id="gameover-img" height="50%" width="auto" class="rounded-circle animate__animated animate__delay-1s animate__jello" src="assets/images/game-over.webp" alt="game over">
 		</section>
 	</article>
 
 	<!-- Console -->
-	<article class="console collapse" id="collapseConsole">
-		<section class="container mx-auto">
+	<article class="console d-none collapse" id="collapseConsole">
+		<section class="console-section container mx-auto">
 			<textarea class="form-control" id="game-console-textarea" rows="5" disabled></textarea>
-			<div class="console-input input-group mb-2">
+			<div class="console-input input-group">
 				<div class="input-group-prepend">
-				  <span class="input-group-text" id="basic-addon1">&gt;</span>
+					<span class="input-group-text" id="basic-addon1">
+						<h5><b>&gt;</b></h5>
+					</span>
 				</div>
 				<input id="game-console-input" class="form-control">
 			</div>
@@ -115,7 +117,7 @@
 	</article>
 
 	<!-- Game -->
-	<article id="game" class="game container-fluid vh-100 animate__animated">
+	<article id="game" class="game d-none container-fluid vh-100 animate__animated">
 		<main class="row h-100 justify-content-center align-items-center">
 			<!-- Preview -->
 			<section class="game-preview container col-md-6 col-sm-12 d-flex justify-content-center h-100">

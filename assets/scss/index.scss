@@ -59,30 +59,35 @@ h1, h2, h3, button {
 }
 
 .console {
-	z-index: 1200;
+	z-index: 10;
 	position: absolute;
-	top: 0;
+	bottom: 0;
 	left: 0;
 	width: 100%;
 
-	input, textarea, span {
-		resize: none;
-		background-color: rgba(66, 66, 66, 0.856) !important;
-		border: none;
-		border-radius: 0;
-		color: whitesmoke !important;
+	#{&}-section {
+		background: rgba(66, 66, 66, 0.85) !important;
+		border: 2px solid rgba(66, 66, 66, 0.9) !important;
+		border-top-left-radius: 1em;
+		border-top-right-radius: 1em;
 
-		&:active, &:hover, &:visited, &:focus {
-			border: none !important;
-			box-shadow: none !important;
+		input, textarea, span {
+			background: transparent !important;
+			resize: none;
+			border: none;
+			border-radius: 0;
+			color: whitesmoke !important;
+	
+			&:active, &:hover, &:visited, &:focus {
+				border: none !important;
+				box-shadow: none !important;
+			}
 		}
 	}
 
 	#{&}-input {
 		div, input, span {
 			margin: 0;
-			border-bottom-left-radius: 1em;
-			border-bottom-right-radius: 1em;
 		}
 		
 		span {

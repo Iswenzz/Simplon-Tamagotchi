@@ -14,10 +14,7 @@ class Viewport
 		this.name = name;
 		this.animIn = animIn;
 		this.animOut = animOut;
-
-		// hide viewport by default
-		this.element = document.getElementById(this.name);
-		this.element.classList.add("d-none");
+		this.element = document.getElementById(name);
 	}
 
 	/**
