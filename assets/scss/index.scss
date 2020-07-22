@@ -335,3 +335,16 @@ h1, h2, h3, button {
 		@include bar(salmon, "\f3ad", "Font Awesome 5 Brands");
 	}
 }
+
+.rainbow-effect {
+	animation: rainbow 0.5s steps(36) infinite;
+
+	@keyframes rainbow {
+		from {
+			filter:hue-rotate(10deg);
+		}
+		to {
+			filter:hue-rotate(360deg);
+		}
+	}
+}

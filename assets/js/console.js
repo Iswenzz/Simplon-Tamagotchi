@@ -14,12 +14,20 @@ class GameConsole
 			callback: () => this.character.onSleep()
 		},
 		play: {
-			msg: "Your character is no playing.",
+			msg: "Your character is now playing.",
 			callback: () => this.character.onPlay()
 		},
 		hunt: {
-			msg: "Your character is no hunting.",
+			msg: "Your character is now hunting.",
 			callback: () => this.character.onHunt()
+		},
+		rainbow: {
+			msg: "Rainbow Spyro !!!",
+			callback: () => this.character.previewElem.classList.add("rainbow-effect")
+		},
+		kill: {
+			msg: "You killed your character ! >:(",
+			callback: () => this.character.kill()
 		},
 		clear: {
 			msg: null,
@@ -41,6 +49,21 @@ class GameConsole
 		this.character = character;
 		this.input = input;
 		this.output = output;
+
+		this.input.value = "";
+		this.output.value = "";
+
+		this.input.addEventListener("keydown", this.onKeyDown.bind(this));
+	}
+	
+	/**
+	 * Collapse the console element.
+	 */
+	open()
+	{
+		$("#collapseConsole").collapse("toggle");
+		this.input.focus();
+		setTimeout(() => this.input.value = "", 100);
 	}
 
 	/**

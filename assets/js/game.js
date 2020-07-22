@@ -3,7 +3,9 @@ let mainLoopPaused = false;
 let selectedCharacter = null; // Character selected to play/edit profile
 let selectedViewport = null;
 let characters = [];
-let gameConsole = null;
+let gameConsole = new GameConsole(selectedCharacter,
+	document.getElementById("game-console-input"),
+	document.getElementById("game-console-textarea"));
 const audio_bgm = document.getElementById("bgm");
 const helpModal = document.getElementById("helpModal");
 
@@ -164,16 +166,11 @@ const gameLoop = () =>
 	document.getElementById("btn-hunting")
 		.addEventListener("click", selectedCharacter.onHunt.bind(selectedCharacter));
 
-	// game console listeners
-	gameConsole = new GameConsole(selectedCharacter,
-		document.getElementById("game-console-input"),
-		document.getElementById("game-console-textarea"));
-	document.getElementById("game-console-input")
-		.addEventListener("keydown", gameConsole.onKeyDown.bind(gameConsole));
-
+	if (gameConsole)
+		gameConsole.character = selectedCharacter;
 	selectedCharacter.initialize();
 
-	mainLoop = setInterval(() => mainLoopPaused ? null : selectedCharacter.frame(), 10000);
+	mainLoop = setInterval(() => mainLoopPaused ? null : selectedCharacter.frame(), 1000);
 }
 
 /**
@@ -182,7 +179,10 @@ const gameLoop = () =>
 const gameOver = () =>
 {
 	clearInterval(mainLoop);
+	mainLoop = null;
+	
 	toggleViewport("gameover");
+	$("#collapseConsole").collapse("hide");
 
 	// delete profile
 	const index = characters.indexOf(selectedCharacter);
