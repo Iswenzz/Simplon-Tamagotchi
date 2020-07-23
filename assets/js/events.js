@@ -19,6 +19,7 @@ const hotkeys = {
 		51: { callback: () => selectedCharacter.onHunt() },
 		27: { callback: () => null },
 		9: { callback: () => $("#helpModal").modal("toggle") },
+		192: { callback: () => gameConsole.open() },
 		222: { callback: () => gameConsole.open() }
 	},
 	gameover: {
