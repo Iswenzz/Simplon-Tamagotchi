@@ -1,8 +1,6 @@
-![](https://i.imgur.com/XFvRaaO.png)
-# Simplon JS TP
+# Simplon Tamagotchi
 ![](https://i.imgur.com/WjDAECn.jpg)
 
-# Spyro Tamagotchi
 L’objectif est de réalisé une page Web dynamique contenant un petit compagnon virtuel, à l’instar du fameux Tamagotchi
 
 ## Livrables
